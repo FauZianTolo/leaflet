@@ -14,7 +14,7 @@ export class HomePage {
 
   ionViewDidEnter() {
     // Initialize the map and set the view
-    this.map = L.map('mapId').setView([51.505, -0.09], 10);
+    this.map = L.map('mapId').setView([-8.107735945266175, 112.92235945643012], 10);
 
     // Base layers
     const osmBase = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -40,15 +40,20 @@ export class HomePage {
     // Add the default base map (OSM) to the map
     osmBase.addTo(this.map);
 
+    const image = 'https://kilasjatim.com/wp-content/uploads/2024/08/gunung-semeru-2_43.jpeg'; // Sesuaikan URL gambar
     // Add a circle marker (buffer) around a point
-    const circle = L.circle([51.508, -0.11], {
+    const circle = L.circle([-8.107735945266175, 112.92235945643012], {
       color: 'blue',
       fillColor: '#30f',
       fillOpacity: 0.5,
       radius: 500 // radius in meters
     }).addTo(this.map);
 
-    circle.bindPopup("This is a circular marker (buffer zone).");
+    circle.bindPopup(`
+      <b>Puncak Gunung Semeru</b><br>
+      Salah satu puncak gunung tertinggi di Pulau Jawa dengan ketinggian 3.676 mdpl.<br>
+      <img src="${image}" alt="Universitas Gadjah Mada" style="max-width: 100%; height: auto;"/>
+    `).openPopup();
 
     // Base Maps object for the layer control
     const baseMaps = {
